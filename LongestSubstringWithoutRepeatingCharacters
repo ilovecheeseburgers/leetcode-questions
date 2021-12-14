@@ -1,0 +1,33 @@
+class Solution:
+    def lengthOfLongestSubstring(self, s: str) -> int:
+        '''
+        IGNORE THE PRINT STATEMENTS
+        l = abcdefgacbdfgehb
+        c = 1234567
+    longest_c=        12345678
+        '''
+        
+        
+        list = {}
+        count = 0
+        longest_count = 0
+        startl = 0
+        for i, letter in enumerate(s):
+            if letter in list and list[letter]>=startl:
+                count = i - startl
+                print("this is i:", i)
+                print ("this is startl:", startl)
+                print('this is count = i-startl:', count)
+                startl = list[letter] + 1
+                list[letter] = i
+                print ('this is startl:', startl, ',', 'this is list[letter]:', list[letter], 'this is letter:', letter)
+                if count > longest_count:
+                    longest_count = count
+                    print ('longest_count:', longest_count)
+            else:
+                list[letter] = i
+                count = list[letter] - startl + 1
+                if count > longest_count:
+                    longest_count = count
+        print (longest_count)
+        return (longest_count)
